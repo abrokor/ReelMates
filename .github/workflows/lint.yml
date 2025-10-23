@@ -1,37 +1,28 @@
 name: Lint
 
 on:
-  workflow_dispatch:            # enables the “Run workflow” button
   push:
     branches: [ "main" ]
-    paths:
-      - "**/*.js"
-      - "**/*.jsx"
-      - "**/*.ts"
-      - "**/*.tsx"
-      - "package.json"
-      - "eslint.*"
-      - ".eslintrc.*"
-      - ".github/workflows/**"  # <— include workflow edits too
   pull_request:
     branches: [ "main" ]
-    paths:
-      - "**/*.js"
-      - "**/*.jsx"
-      - "**/*.ts"
-      - "**/*.tsx"
-      - "package.json"
-      - "eslint.*"
-      - ".eslintrc.*"
+  workflow_dispatch:
 
 jobs:
-  eslint:
+  lint:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
