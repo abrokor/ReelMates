@@ -1,0 +1,42 @@
+name: Lint
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "**/*.js"
+      - "**/*.jsx"
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "package.json"
+      - "eslint.*"
+      - ".eslintrc.*"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "**/*.js"
+      - "**/*.jsx"
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "package.json"
+      - "eslint.*"
+      - ".eslintrc.*"
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps (CI)
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
