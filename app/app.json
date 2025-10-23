@@ -1,0 +1,7 @@
+"extra": {
+  // Keep legacy names for older code paths:
+  "SUPABASE_URL": "$env:EXPO_PUBLIC_SUPABASE_URL",
+  "SUPABASE_ANON": "$env:EXPO_PUBLIC_SUPABASE_ANON_KEY",
+  "TMDB_KEY": "$env:EXPO_PUBLIC_TMDB_KEY",
+  "TMDB_V4": "$env:EXPO_PUBLIC_TMDB_READ_TOKEN"
+}

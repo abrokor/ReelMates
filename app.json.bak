@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "ReelMates",
+    "slug": "reelmates",
+    "scheme": "reelmates",
+    "plugins": ["expo-router"],
+    "platforms": ["ios", "android"],
+    "extra": {
+      "TMDB_KEY": "$env:TMDB_KEY",
+      "TMDB_V4": "$env:TMDB_V4",
+      "SUPABASE_URL": "$env:SUPABASE_URL",
+      "SUPABASE_ANON": "$env:SUPABASE_ANON"
+    }
+  }
+}

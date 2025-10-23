@@ -1,0 +1,29 @@
+# Node / Expo / RN
+node_modules/
+.expo/
+.expo-shared/
+.expo-dev-cache/
+.expo/web/
+dist/
+build/
+android/
+ios/
+*.log
+.DS_Store
+
+# Editor / OS
+.vscode/
+.idea/
+
+# Env / secrets
+.env
+.env.*
+*.keystore
+*.p8
+*.pem
+*.jks
+eas.json
+
+# Supabase cache
+supabase/.branches
+supabase/.temp
