@@ -17,13 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (20.19.x)
+      - name: Setup Node.js (20.19.1)
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.1'
+          node-version: '20.19.1'   # RN 0.81 requires >= 20.19.x
           cache: 'npm'
 
-      - name: Print Node & npm versions
+      - name: Print tool versions
         run: |
           node -v
           npm -v
@@ -31,5 +31,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # --- Debug helpers so failures are obvious ---
+      - name: Show repo tree and TypeScript files
+        run: |
+          pwd
+          ls -la
+          echo "Top level app/ files:"
+          (ls -la app || true)
+          echo "Sample TS/TSX files under app/:"
+          (find app -type f \( -name "*.ts" -o -name "*.tsx" \) | head -n 50 || true)
+
+      - name: Show ESLint version
+        run: npx eslint --version
+
       - name: Run ESLint
-        run: npm run lint -- --format=stylish
+        run: |
+          npx eslint "app/**/*.{ts,tsx}" --format=stylish
