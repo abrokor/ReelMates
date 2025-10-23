@@ -27,3 +27,4 @@ eas.json
 # Supabase cache
 supabase/.branches
 supabase/.temp
+!.env.example
