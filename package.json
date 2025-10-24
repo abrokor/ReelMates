@@ -11,6 +11,8 @@
     "lint": "eslint \"app/**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"app/**/*.{ts,tsx}\" --fix",
     "prepare": "husky"
+    "typecheck": "tsc --noEmit"
+
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",

@@ -2,48 +2,28 @@ name: Lint
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - '**'
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-    env:
-      CI: true
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (20.19.1)
+      - name: Use Node.js 20.19.1
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.1'   # RN 0.81 requires >= 20.19.x
+          node-version: '20.19.1'
           cache: 'npm'
 
-      - name: Print tool versions
-        run: |
-          node -v
-          npm -v
-
-      - name: Install dependencies
-        run: npm ci
-
-      # --- Debug helpers so failures are obvious ---
-      - name: Show repo tree and TypeScript files
-        run: |
-          pwd
-          ls -la
-          echo "Top level app/ files:"
-          (ls -la app || true)
-          echo "Sample TS/TSX files under app/:"
-          (find app -type f \( -name "*.ts" -o -name "*.tsx" \) | head -n 50 || true)
-
-      - name: Show ESLint version
-        run: npx eslint --version
+      - name: Install deps
+        run: npm install
 
       - name: Run ESLint
-        run: |
-          npx eslint "app/**/*.{ts,tsx}" --format=stylish
+        run: npm run lint
