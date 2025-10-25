@@ -1,70 +1,55 @@
-// eslint.config.cjs  — ESLint v9 “flat” config for React-Native + TS
+// eslint.config.cjs — ESLint 9 flat config (no react-native plugin)
 const tsParser = require('@typescript-eslint/parser');
-const tsPlugin = require('@typescript-eslint/eslint-plugin');
-const reactPlugin = require('eslint-plugin-react');
-const rnPlugin = require('eslint-plugin-react-native');
-const globals = require('globals');
+const tseslint = require('@typescript-eslint/eslint-plugin');
+const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
 
 module.exports = [
+  // Ignore junk
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
     ignores: [
       'node_modules/**',
       'dist/**',
       'build/**',
       '.expo/**',
-      '.expo-shared/**',
-      'android/**',
-      'ios/**',
+      '**/*.json',
     ],
+  },
+
+  // TypeScript + React
+  {
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parser: tsParser,
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      globals: {
-        // Browser + ES globals
-        ...globals.browser,
-        ...globals.es2021,
-
-        // React Native / Metro globals
-        __DEV__: 'readonly',
-
-        // RN runtime globals that “no-undef” was complaining about
-        fetch: 'readonly',
-        console: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        requestAnimationFrame: 'readonly',
-        cancelAnimationFrame: 'readonly',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+        // no project: avoids TS config project lookup perf issues in CI
       },
     },
     plugins: {
-      '@typescript-eslint': tsPlugin,
-      react: reactPlugin,
-      'react-native': rnPlugin,
+      '@typescript-eslint': tseslint,
+      react,
+      'react-hooks': reactHooks,
     },
     settings: {
       react: { version: 'detect' },
     },
     rules: {
-      // Turn off “false positives” for RN
-      'no-undef': 'off',
+      // React Hooks
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+
+      // React (using the plugin directly in flat config)
+      'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
 
-      // Console is useful during development
-      'no-console': 'off',
-
-      // Make unused vars a *warning* and allow leading underscore to silence
-      'no-unused-vars': 'off',
+      // TS quality-of-life
       '@typescript-eslint/no-unused-vars': [
         'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
-
-      // A couple of sensible defaults
-      'react/jsx-boolean-value': ['warn', 'never'],
-      'react/jsx-key': 'warn',
-      'react-native/no-inline-styles': 'off', // we intentionally use RN inline styles
     },
   },
 ];
