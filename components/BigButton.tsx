@@ -1,8 +1,8 @@
 // app/components/BigButton.tsx
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import { colors } from '../../lib/colors';
-import { spacing } from '../../lib/ui';
+import { colors } from '../lib/colors';
+import { spacing } from '../lib/ui';
 
 type Props = {
   label: string;
@@ -15,7 +15,7 @@ export default function BigButton({ label, onPress, variant = 'surface' }: Props
     variant === 'primary'
       ? colors.primary
       : variant === 'secondary'
-      ? colors.secondary
+      ? colors.primary
       : colors.surface;
 
   const fg = variant === 'surface' ? colors.textPrimary : '#ffffff';
@@ -30,7 +30,7 @@ export default function BigButton({ label, onPress, variant = 'surface' }: Props
         paddingHorizontal: spacing.lg,
         borderRadius: 16,
         borderWidth: 1,
-        borderColor: colors.border,
+        borderColor: colors.hairline,
         marginBottom: spacing.md,
         shadowColor: '#000',
         shadowOpacity: 0.25,
