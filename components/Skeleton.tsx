@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, ViewStyle } from 'react-native';
-import { colors } from '../../lib/colors';
+import { colors } from '../lib/colors';
 
 type Props = {
   width?: number | string;

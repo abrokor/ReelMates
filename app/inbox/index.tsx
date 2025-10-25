@@ -6,7 +6,7 @@ import { colors, spacing, typography } from "../../lib/ui";
 import { screenStyles } from "../../lib/screen";
 import { imgUrl, MediaType } from "../../lib/tmdb";
 import RatingBadge from "../../components/RatingBadge";
-import supabase from "../../lib/supabase";
+import { supabase } from "../../lib/supabase";
 
 type SavedRow = {
   id: string;
@@ -118,7 +118,7 @@ export default function InboxScreen() {
   }
 
   return (
-    <SafeAreaView style={screenStyles.background}>
+    <SafeAreaView style={screenStyles.container}>
       {busy && rows.length === 0 ? (
         <ActivityIndicator style={{ marginTop: spacing.lg }} />
       ) : error ? (

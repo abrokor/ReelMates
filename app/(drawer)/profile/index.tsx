@@ -29,7 +29,7 @@ export default function ProfileScreen() {
       setUserId(id);
 
       if (id) {
-        const { data } = await supabase.from<Profile>('profiles')
+        const { data } = await supabase.from('profiles')
           .select('id, username, bio, avatar_url')
           .eq('id', id)
           .maybeSingle();
@@ -81,9 +81,9 @@ export default function ProfileScreen() {
   };
 
   return (
-    <SafeAreaView style={screenStyles.background}>
+    <SafeAreaView style={screenStyles.container}>
       <View style={{ padding: spacing.lg, gap: spacing.lg }}>
-        <Text style={[typography.body, { color: colors.textLight }]}>
+        <Text style={[typography.body, { color: colors.textSecondary }]}>
           {loading ? 'Loading…' : 'Pick Avatar'}
         </Text>
 

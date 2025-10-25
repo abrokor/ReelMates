@@ -1,11 +1,10 @@
-// lib/screen.ts
+import { StyleSheet } from "react-native";
 import { colors, spacing } from "./ui";
 
-export const screenStyles = {
-  flex: 1,
-  backgroundColor: colors.background,
-  padding: spacing.lg,
-};
-
-// alias so either name works
-export const screenStyle = screenStyles;
+export const screenStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    padding: spacing.md,
+  },
+});

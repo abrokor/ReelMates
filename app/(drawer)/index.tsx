@@ -6,7 +6,7 @@ import { colors, spacing, typography } from "../../lib/ui";
 
 const Row = ({ label, to }: { label: string; to: string }) => (
   <Pressable
-    onPress={() => router.push(to)}
+    onPress={() => router.push(to as any)}
     style={{
       paddingVertical: spacing.lg,
       paddingHorizontal: spacing.lg,

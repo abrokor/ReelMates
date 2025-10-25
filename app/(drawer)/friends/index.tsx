@@ -6,7 +6,7 @@ import { screenStyles } from '../../../lib/screen';
 
 export default function FriendsScreen() {
   return (
-    <SafeAreaView style={screenStyles.background}>
+    <SafeAreaView style={screenStyles.container}>
       <View style={{ padding: spacing.lg }}>
         <Text style={[typography.h1, { color: colors.textPrimary }]}>Friends</Text>
         <Text style={[typography.body, { color: colors.textSecondary, marginTop: spacing.md }]}>

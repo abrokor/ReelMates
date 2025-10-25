@@ -1,33 +1,44 @@
 // lib/ui.ts
-// Single source of truth for design tokens.
-
 export const colors = {
-  background: '#0b0b0b',
-  surface:    '#161616',
-  primary:    '#14a3ff',
-  textPrimary:   '#e5e5e5',
-  textSecondary: '#a1a1aa',
-  danger:     '#ef4444',
-  success:    '#10b981',
-  hairline:   '#2a2a2a',   // ← add this line (thin borders/dividers)
-};
+  // Base
+  background: "#0B0E11",
+  surface: "#141A20",
+  surfaceDark: "#0F1419",
+  card: "#1A222B",
+
+  // Brand
+  primary: "#22D3EE",            // teal
+  coral: "#FF6B6B",
+  textOnCoral: "#0B0E11",
+
+  // Text
+  textPrimary: "#F3F6F9",
+  textSecondary: "#A7B0BA",
+  text: "#F3F6F9",               // alias for convenience
+  muted: "#7C8792",
+
+  // Feedback / hairline
+  danger: "#EF4444",
+  success: "#10B981",
+  hairline: "#2A3340",
+} as const;
 
 export const spacing = {
   xs: 4,
-  s: 6,
-  sm: 8,
-  md: 12,
-  lg: 16,
+  s: 8,
+  sm: 12,
+  md: 16,
+  lg: 20,
   xl: 24,
-  xxl: 32,
-  xxxl: 48,
+  xxl: 28,
+  xxxl: 36,
 } as const;
 
 export const typography = {
-  display32: { fontSize: 32, fontWeight: "700", color: colors.textPrimary },
-  h1:        { fontSize: 24, fontWeight: "700", color: colors.textPrimary },
-  h2:        { fontSize: 18, fontWeight: "700", color: colors.textPrimary },
-  body:      { fontSize: 16, fontWeight: "400", color: colors.textPrimary },
-  caption12: { fontSize: 12, fontWeight: "400", color: colors.textSecondary },
-  button:    { fontSize: 16, fontWeight: "600", color: colors.textPrimary },
+  display32: { fontSize: 32, fontWeight: "700" as const, color: colors.textPrimary },
+  h1:        { fontSize: 24, fontWeight: "700" as const, color: colors.textPrimary },
+  h2:        { fontSize: 18, fontWeight: "600" as const, color: colors.textPrimary },
+  body:      { fontSize: 16, fontWeight: "400" as const, color: colors.textPrimary },
+  caption12: { fontSize: 12, fontWeight: "400" as const, color: colors.textSecondary },
+  button:    { fontSize: 16, fontWeight: "700" as const, color: colors.textPrimary },
 } as const;

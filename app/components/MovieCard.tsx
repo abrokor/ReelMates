@@ -33,7 +33,7 @@ function MovieCardBase({ title, subtitle, imagePath, onPress, right }: Props) {
             {title}
           </Text>
           {!!subtitle && (
-            <Text style={[typography.caption2, { color: colors.textSecondary }]} numberOfLines={1}>
+            <Text style={[typography.caption12, { color: colors.textSecondary }]} numberOfLines={1}>
               {subtitle}
             </Text>
           )}

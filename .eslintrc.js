@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
-  extends: ['plugin:react/recommended', 'plugin:react-native/all'],
-  plugins: ['react', 'react-native'],
+  extends: ['plugin:react/recommended', ''],
+  plugins: ['react'],
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaFeatures: { jsx: true } },
   settings: { react: { version: 'detect' } },

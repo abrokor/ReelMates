@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Text, View } from 'react-native';
-import { colors } from '../../lib/colors';
-import { spacing, typography } from '../../lib/ui';
+import { colors } from '../lib/colors';
+import { spacing, typography } from '../lib/ui';
 
 export default function Toast({ message }: { message: string }) {
   const a = useRef(new Animated.Value(0)).current;

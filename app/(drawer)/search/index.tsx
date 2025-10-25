@@ -65,7 +65,7 @@ export default function SearchScreen() {
         // If a title is present, use our normal helper, optionally passing year.
         if (q.length >= 2) {
           const yr = y.length === 4 ? Number(y) : undefined;
-          list = await searchTMDB(q, yr);
+          list = await searchTMDB(q, yr ? String(yr) : undefined);
         } else {
           // Year-only search. Use a very broad title to get popular titles,
           // then client-filter by year. (Keeps changes local to this screen.)

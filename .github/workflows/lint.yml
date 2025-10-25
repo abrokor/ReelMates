@@ -22,8 +22,14 @@ jobs:
           node-version: '20.19.1'
           cache: 'npm'
 
-      - name: Install deps
-        run: npm install
+      - name: Install deps (ci with fallback)
+        run: |
+    if npm ci; then
+      echo "npm ci OK"
+    else
+      echo "npm ci failed; trying npm install with legacy peers"
+      npm install --legacy-peer-deps
+    fi
 
       - name: Run ESLint
         run: npm run lint

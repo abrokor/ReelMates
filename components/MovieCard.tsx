@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, Image, Pressable, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { colors } from '../../lib/colors';
-import { spacing, typography } from '../../lib/ui';
+import { colors } from '../lib/colors';
+import { spacing, typography } from '../lib/ui';
 import RatingBadge from './RatingBadge';
 
 type RightAction = {

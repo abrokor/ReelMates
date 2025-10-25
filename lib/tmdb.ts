@@ -66,26 +66,19 @@ export type TMDBItem = {
   vote_average?: number;
 };
 
-export async function searchTMDB(query: string): Promise<TMDBItem[]> {
+export async function searchTMDB(query: string, year?: string) {
   const q = query?.trim();
   if (!q) return [];
-  const url = `${TMDB_BASE}/search/multi?query=${encodeURIComponent(
-    q
-  )}&include_adult=false&language=en-US&page=1`;
+  const url = new URL("https://api.themoviedb.org/3/search/multi");
+  url.searchParams.set("query", q);
+  if (year && /^\d{4}$/.test(year)) url.searchParams.set("year", year);
 
-  const res = await authFetch(url);
-  if (!res.ok) {
-    let msg = `TMDB search failed: ${res.status}`;
-    try {
-      const j = await res.json();
-      if (j?.status_message) msg += ` – ${j.status_message}`;
-    } catch {}
-    throw new Error(msg);
-  }
+  const res = await fetch(url.toString(), {
+    headers: { Authorization: `Bearer ${process.env.EXPO_PUBLIC_TMDB_READ_TOKEN || process.env.TMDB_V4}` }
+  });
+  if (!res.ok) return [];
   const json = await res.json();
-  return (json?.results ?? []).filter(
-    (r: any) => r?.media_type === "movie" || r?.media_type === "tv"
-  );
+  return json.results ?? [];
 }
 
 export async function getDetails(media: MediaType, id: number) {

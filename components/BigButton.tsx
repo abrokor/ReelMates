@@ -1,16 +1,18 @@
-// app/components/BigButton.tsx
+// components/BigButton.tsx
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { colors } from '../lib/colors';
-import { spacing } from '../lib/ui';
+import { spacing, typography } from '../lib/ui';
 
 type Props = {
   label: string;
-  onPress: () => void;
-  variant?: 'primary' | 'surface' | 'secondary';
+  onPress?: () => void;
+  /** UI look */
+  variant?: 'surface' | 'primary' | 'secondary';
 };
 
 export default function BigButton({ label, onPress, variant = 'surface' }: Props) {
+  // 'secondary' uses our primary color too (we don't have a dedicated secondary color)
   const bg =
     variant === 'primary'
       ? colors.primary
@@ -23,12 +25,11 @@ export default function BigButton({ label, onPress, variant = 'surface' }: Props
   return (
     <TouchableOpacity
       onPress={onPress}
-      activeOpacity={0.85}
       style={{
-        backgroundColor: bg,
-        paddingVertical: spacing.lg,
         paddingHorizontal: spacing.lg,
+        paddingVertical: spacing.md,
         borderRadius: 16,
+        backgroundColor: bg,
         borderWidth: 1,
         borderColor: colors.hairline,
         marginBottom: spacing.md,
@@ -36,20 +37,9 @@ export default function BigButton({ label, onPress, variant = 'surface' }: Props
         shadowOpacity: 0.25,
         shadowRadius: 12,
         shadowOffset: { width: 0, height: 6 },
-        elevation: 2,
       }}
     >
-      <Text
-        style={{
-          color: fg,
-          fontSize: 18,
-          fontWeight: '700',
-          textAlign: 'center',
-          letterSpacing: 0.3,
-        }}
-      >
-        {label}
-      </Text>
+      <Text style={{ ...typography.button, color: fg }}>{label}</Text>
     </TouchableOpacity>
   );
 }
